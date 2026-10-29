@@ -1,23 +1,17 @@
+
 from fastapi import FastAPI
+
+from SecureRAG.api.documents import router as documents_router
 
 app = FastAPI(
     title="SecureRAG",
-    description="A secure document-grounded question-answering system",
+    description="Secure enterprise knowledge retrieval system",
     version="0.1.0",
 )
 
-
-@app.get("/")
-def root():
-    return {
-        "message": "Welcome to SecureRAG",
-        "status": "running",
-    }
+app.include_router(documents_router)
 
 
 @app.get("/health")
 def health_check():
-    return {
-        "status": "healthy",
-    }
-
+    return {"status": "healthy"}
